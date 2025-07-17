@@ -49,71 +49,101 @@
     </div>
   </section>
 
-  <section id="about" class="container my-5">
-    <h2>What could I be used for?</h2>
+  <section id="about" class="container my-5 p-4 rounded bg-light shadow-sm">
+    <h2 class="fw-bold border-bottom pb-2 mb-4 text-dark text-center">What could I be used for?</h2>
     <p>Endless possibilities, including:</p>
-    <ol>
-        <li><strong>Internal Company Bulletins/Notice Boards</strong></li>
-        <p><i>Post announcements, events, HR policies, etc.</i></p>
+    <ol class="list-group list-group-numbered">
+        <li class="list-group-item">
+            <strong>Internal Company Bulletins/Notice Boards</strong><br>
+            <small class="text-muted fst-italic">Post announcements, events, HR policies, etc.</small>
+        </li>
+        <br>
 
-        <li><strong>Employee Onboarding Portals</strong></li>
-        <p><i>Pages with resources for new hires (policies, contacts, 
-            training links, FAQs, Useful video links etc)</i></p>
+        <li class="list-group-item">
+            <strong>Employee Onboarding Portals</strong><br>
+            <small class="text-muted fst-italic">Pages with resources for new hires (policies, contacts, 
+            training links, FAQs, Useful video links etc)</small>
+        </li>
+        <br>
 
-        <li><strong>Product Launch/Feature Highlights Portals</strong></li>
-        <p><i>Marketing-style microsite to showcase internal tools, beta releases, 
-            or IT changes. Can double as internal release notes with search.</i></p>
+        <li class="list-group-item">
+            <strong>Product Launch/Feature Highlights Portals</strong><br>
+            <small class="text-muted fst-italic">Marketing-style microsite to showcase internal tools, beta releases, 
+            or IT changes. Can double as internal release notes with search.</small>
+        </li>
+        <br>
+        
+        <li class="list-group-item">
+            <strong>Blogs/Dev Digests</strong><br>
+            <small class="text-muted fst-italic">Share weekly tech articles, team achievements, learning resources. 
+            Easy Git-based publishing pipeline.</small>
+        </li>
+        <br>
 
-        <li><strong>Blogs/Dev Digests</strong></li>
-        <p><i>Share weekly tech articles, team achievements, learning resources. 
-            Easy Git-based publishing pipeline.</i></p>
+        <li class="list-group-item">
+            <strong>Tools Hubs & Artefact Links Directories</strong><br>
+            <small class="text-muted fst-italic">One-page site listing internal apps, dashboards, documentation links. 
+            Can a “Last updated” section. Use icons and tags for categorization.</small>
+        </li>
 
-        <li><strong>Tools Hubs & Artefact Links Directories</strong></li>
-        <p><i>One-page site listing internal apps, dashboards, documentation links. 
-            Can a “Last updated” section. Use icons and tags for categorization.</i></p>
+        <li class="list-group-item">
+            <strong>Security & Compliance Update Pages</strong><br>
+            <small class="text-muted fst-italic">Monthly summary of new policies, vulnerabilities, mandatory training.</small>
+        </li>
+        <br>
 
-        <li><strong>Security & Compliance Update Pages</strong></li>
-        <p><i>Monthly summary of new policies, vulnerabilities, mandatory training.</i></p>
+        <li class="list-group-item">
+            <strong>Lightweight Feedback/Survey Pages</strong><br>
+            <small class="text-muted fst-italic">Embed Google Forms, or simple JavaScript-based poll. No backend needed. 
+            Responses go to an external service or email.</small>
+        </li>
 
-        <li><strong>Lightweight Feedback/Survey Pages</strong></li>
-        <p><i>Embed Google Forms, or simple JavaScript-based poll. No backend needed. 
-            Responses go to an external service or email.</i></p>
+        <li class="list-group-item">
+            <strong>Incident Postmortem Wikis</strong><br>
+            <small class="text-muted fst-italic">Public or internal timeline of past major incidents with lessons learned.</small>
+        </li>
+        <br>
 
-        <li><strong>Incident Postmortem Wikis</strong></li>
-        <p><i>Public or internal timeline of past major incidents with lessons learned.</i></p>
+        <li class="list-group-item">
+            <strong>Career and Internal Roles Advert Boards</strong><br>
+            <small class="text-muted fst-italic">Showcase open roles, referral bonuses, and team intros. Can also link this to Applicant 
+            Tracking Systems or embedded iframe of Company Job Board.</small>
+        </li>
+        <br>
 
-        <li><strong>Career and Internal Roles Advert Boards</strong></li>
-        <p><i>Showcase open roles, referral bonuses, and team intros. Can also link this to Applicant 
-            Tracking Systems or embedded iframe of Company Job Board.</i></p>
-
-        <li><strong>Service Status Pages and Manuals</strong></li>
-        <p><i>Static site showing the status of internal systems (updated via Git). Later upgradable 
-            to automated status updates via API polling using scheduled jobs etc.</i></p>
+        <li class="list-group-item">
+            <strong>Service Status Pages and Manuals</strong><br>
+            <small class="text-muted fst-italic">Static site showing the status of internal systems (updated via Git). Later upgradable 
+            to automated status updates via API polling using scheduled jobs etc.</small>
+        </li>
+        <br>
 
         <p><b>etc...</b></p>
     </ol>
   </section>
 
-  <section id="features" class="container my-5">
-    <h2>Features</h2>
+  <section id="features" class="container my-5  p-4 rounded bg-light shadow-sm">
+    <h2 class="fw-bold border-bottom pb-2 mb-4 text-dark text-center">Features</h2>
     <div class="row">
       <div class="col-md-4">
-        <h5>Fast!</h5>
+        <h5 class="text-decoration-underline">Fast!</h5>
         <p>I can be deployed on AWS S3 + CloudFront for global performance.</p>
       </div>
+
       <div class="col-md-4">
-        <h5>Secure</h5>
+        <h5 class="text-decoration-underline">Secure</h5>
         <p>HTTPS enabled using AWS Certificate Manager (ACM). Managed via GitHub Actions CI/CD.</p>
       </div>
+
       <div class="col-md-4">
-        <h5>Responsive</h5>
-        <p>Mobile-first design using Bootstrap grid system.</p>
+        <h5 class="text-decoration-underline">Responsive</h5>
+        <p>Mobile-first design using Bootstrap grid system, with hamburger menu on mobile devices.</p>
       </div>
     </div>
   </section>
 
-  <section id="contact" class="container my-5">
-    <h2>Contact</h2>
+  <section id="contact" class="container my-5 text-center">
+    <h2 class="fw-bold border-bottom pb-2 mb-4 text-dark">Contact</h2>
     <p>My Creator Ama Fru is reachable via</p>
     <a href="https://amabuhfru.com" target="_blank" rel="noopener">Amabuhfru.com</a>
   </section>
