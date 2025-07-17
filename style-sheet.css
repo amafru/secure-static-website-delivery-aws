@@ -2,14 +2,24 @@ body {
   padding-top: 56px;
 }
 
+.main-nav{
+    background-color: #0F828C;
+}
+
+.navbar-brand {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
 .hero {
-  background-color: #f8f9fa;
+  background-color: #9ECAD6;
   padding: 60px 0;
   text-align: center;
 }
 
 footer {
-  background-color: #343a40;
+  background-color: rgba(15, 130, 140, 0.8); /*Opacity controlled */
   color: #fff;
   padding: 20px 0;
 }
