@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simple Webapp</title>
+  <!-- Bootstrap -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <!-- CSS -->
+  <link rel="stylesheet" href="style-sheet.css" />
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Simple Webapp</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <h1 class="display-4">Hi! I'm a Simple Webapp</h1>
+      <p class="lead">A mobile-friendly static website powered by HTML, CSS and Bootstrap.</p>
+    </div>
+  </section>
+
+  <section id="about" class="container my-5">
+    <h2>What could I be used for?</h2>
+    <p>Endless possibilities, including:</p>
+    <ol>
+        <li><strong>Internal Company Bulletins/Notice Boards</strong></li>
+        <p><i>Post announcements, events, HR policies, etc.</i></p>
+
+        <li><strong>Employee Onboarding Portals</strong></li>
+        <p><i>Pages with resources for new hires (policies, contacts, 
+            training links, FAQs, Useful video links etc)</i></p>
+
+        <li><strong>Product Launch/Feature Highlights Portals</strong></li>
+        <p><i>Marketing-style microsite to showcase internal tools, beta releases, 
+            or IT changes. Can double as internal release notes with search.</i></p>
+
+        <li><strong>Blogs/Dev Digests</strong></li>
+        <p><i>Share weekly tech articles, team achievements, learning resources. 
+            Easy Git-based publishing pipeline.</i></p>
+
+        <li><strong>Tools Hubs & Artefact Links Directories</strong></li>
+        <p><i>One-page site listing internal apps, dashboards, documentation links. 
+            Can a “Last updated” section. Use icons and tags for categorization.</i></p>
+
+        <li><strong>Security & Compliance Update Pages</strong></li>
+        <p><i>Monthly summary of new policies, vulnerabilities, mandatory training.</i></p>
+
+        <li><strong>Lightweight Feedback/Survey Pages</strong></li>
+        <p><i>Embed Google Forms, or simple JavaScript-based poll. No backend needed. 
+            Responses go to an external service or email.</i></p>
+
+        <li><strong>Incident Postmortem Wikis</strong></li>
+        <p><i>Public or internal timeline of past major incidents with lessons learned.</i></p>
+
+        <li><strong>Career and Internal Roles Advert Boards</strong></li>
+        <p><i>Showcase open roles, referral bonuses, and team intros. Can also link this to Applicant 
+            Tracking Systems or embedded iframe of Company Job Board.</i></p>
+
+        <li><strong>Service Status Pages and Manuals</strong></li>
+        <p><i>Static site showing the status of internal systems (updated via Git). Later upgradable 
+            to automated status updates via API polling using scheduled jobs etc.</i></p>
+
+        <p><b>etc...</b></p>
+    </ol>
+  </section>
+
+  <section id="features" class="container my-5">
+    <h2>Features</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <h5>Fast!</h5>
+        <p>I can be deployed on AWS S3 + CloudFront for global performance.</p>
+      </div>
+      <div class="col-md-4">
+        <h5>Secure</h5>
+        <p>HTTPS enabled using AWS Certificate Manager (ACM). Managed via GitHub Actions CI/CD.</p>
+      </div>
+      <div class="col-md-4">
+        <h5>Responsive</h5>
+        <p>Mobile-first design using Bootstrap grid system.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="container my-5">
+    <h2>Contact</h2>
+    <p>My Creator Ama Fru is reachable via</p>
+    <a href="https://amabuhfru.com" target="_blank" rel="noopener">Amabuhfru.com</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center">
+    <div class="container">
+      <small>© 2025 Simple Webapp by Ama Fru</small>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
