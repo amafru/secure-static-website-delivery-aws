@@ -8,7 +8,7 @@ terraform {
   backend "s3" {
     bucket  = "secure-static-website-tfstate"
     key     = "live/terraform.tfstate"
-    region  = "us-east-1"
+    region  = "eu-west-2"
     encrypt = true
   }
 }
@@ -22,8 +22,9 @@ data "aws_route53_zone" "hosted_zone" {
 # Get AWS account ID for the Current User (will be used later)
 data "aws_caller_identity" "current" {}
 
-# Retrieve certificate details from ACM
+# Retrieve TLS certificate details from ACM
 data "aws_acm_certificate" "acm_cert" {
+  provider    = aws.us_east_1
   domain      = "*.${var.domain_name}"
   statuses    = ["ISSUED"]
   most_recent = true
@@ -42,18 +43,18 @@ resource "aws_s3_bucket" "website_assets_bucket" {
   }
 }
 
-# Configure the s3 bucket for static website hosting
-resource "aws_s3_bucket_website_configuration" "config_s3_bucket_as_web_host" {
-  bucket = aws_s3_bucket.website_assets_bucket.id
+# # Configure the s3 bucket for static website hosting
+# resource "aws_s3_bucket_website_configuration" "config_s3_bucket_as_web_host" {
+#   bucket = aws_s3_bucket.website_assets_bucket.id
 
-  index_document {
-    suffix = "index.html"
-  }
+#   index_document {
+#     suffix = "index.html"
+#   }
 
-  error_document {
-    key = "error.html"
-  }
-}
+#   error_document {
+#     key = "error.html"
+#   }
+# }
 
 # Turn on Block-Public-Access for the bucket and it's resources
 resource "aws_s3_bucket_public_access_block" "block_all" {
@@ -78,7 +79,7 @@ resource "aws_s3_bucket_policy" "cloudfront_s3_access_policy" {
           "Service" : "cloudfront.amazonaws.com"
         }
         Action   = "s3:GetObject"
-        Resource = "${aws_s3_bucket.website_assets_bucket}/*"
+        Resource = "${aws_s3_bucket.website_assets_bucket.arn}/*"
         Condition = {
           StringEquals = {
             "AWS:SourceArn" = "arn:aws:cloudfront::${data.aws_caller_identity.current.account_id}:distribution/${aws_cloudfront_distribution.cdn.id}"

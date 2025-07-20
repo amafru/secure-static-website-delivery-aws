@@ -1,6 +1,6 @@
 variable "region" {
   type        = string
-  default     = "us-east-1" # Can be overriden by spec'ing new value in terraform.tfvars (also update main terraform block)
+  default     = "eu-west-2" # Can be overriden by spec'ing different region value in terraform.tfvars (also update main terraform block)
   description = "The AWS region to deploy to"
 }
 
