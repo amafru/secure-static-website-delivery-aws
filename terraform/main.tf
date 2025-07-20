@@ -6,9 +6,9 @@ terraform {
     }
   }
   backend "s3" {
-    bucket  = "secure-static-webapp-tfstate"
-    key     = "dev/terraform.tfstate"
-    region  = "eu-west-2"
+    bucket  = "secure-static-website-tfstate"
+    key     = "live/terraform.tfstate"
+    region  = "us-east-1"
     encrypt = true
   }
 }
@@ -24,8 +24,8 @@ data "aws_caller_identity" "current" {}
 
 # Retrieve certificate details from ACM
 data "aws_acm_certificate" "acm_cert" {
-  domain   = "*.${var.domain_name}"
-  statuses = ["ISSUED"]
+  domain      = "*.${var.domain_name}"
+  statuses    = ["ISSUED"]
   most_recent = true
 }
 
@@ -72,13 +72,13 @@ resource "aws_s3_bucket_policy" "cloudfront_s3_access_policy" {
     Version = "2008-10-17"
     Statement = [
       {
-        Sid       = "AllowCloudFrontServicePrincipal"
-        Effect    = "Allow"
+        Sid    = "AllowCloudFrontServicePrincipal"
+        Effect = "Allow"
         Principal = {
           "Service" : "cloudfront.amazonaws.com"
         }
-        Action    = "s3:GetObject"
-        Resource  = "${aws_s3_bucket.website_assets_bucket}/*"
+        Action   = "s3:GetObject"
+        Resource = "${aws_s3_bucket.website_assets_bucket}/*"
         Condition = {
           StringEquals = {
             "AWS:SourceArn" = "arn:aws:cloudfront::${data.aws_caller_identity.current.account_id}:distribution/${aws_cloudfront_distribution.cdn.id}"
@@ -102,9 +102,9 @@ resource "aws_cloudfront_origin_access_control" "oac" {
 resource "aws_cloudfront_distribution" "cdn" {
 
   origin {
-    domain_name = aws_s3_bucket.website_assets_bucket.bucket_regional_domain_name
+    domain_name              = aws_s3_bucket.website_assets_bucket.bucket_regional_domain_name
     origin_access_control_id = aws_cloudfront_origin_access_control.oac.id
-    origin_id   = local.cloudfront_s3_origin_id
+    origin_id                = local.cloudfront_s3_origin_id
   }
 
   enabled             = true
@@ -161,3 +161,5 @@ resource "aws_route53_record" "dns_alias_record" {
     evaluate_target_health = false
   }
 }
+
+# NEXT: Capture the S3 bucket name as an output to be used as deployment target in workflow

@@ -1,8 +1,6 @@
 variable "region" {
-  type = string
-  # Default=London | Specify another region in *.tfvars if desired (Manually update region within terraform
-  # block too if you override the default)
-  default     = "us-east-1"
+  type        = string
+  default     = "us-east-1" # Can be overriden by spec'ing new value in terraform.tfvars (also update main terraform block)
   description = "The AWS region to deploy to"
 }
 
@@ -21,12 +19,12 @@ variable "hosted_zone" {
 }
 
 variable "domain_name" {
-  type = string
+  type        = string
   description = "Your domain name"
 }
 
 variable "url_prefix" {
-  type = string
-  default = "simple-website"
+  type        = string
+  default     = "simple-website"
   description = "Your domain name"
 }
