@@ -6,7 +6,7 @@ variable "region" {
 
 variable "web_assets_bucket" {
   type        = string
-  default     = "secure-static-website"
+  default     = "secure-static-website-assets"
   description = "The name of the website assets S3 bucket"
 }
 

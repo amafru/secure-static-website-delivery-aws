@@ -131,7 +131,9 @@ resource "aws_cloudfront_distribution" "cdn" {
     viewer_protocol_policy = "redirect-to-https"
   }
 
-  price_class = "PriceClass_200" # Includes Edge Locations in US, Canada & Europe only
+  # Priceclass_200 Includes Edge Locations in North America, Europe, Asia, Middle East, and Africa
+  # Use Priceclass_100 if you want less coverage
+  price_class = "PriceClass_200" 
 
   restrictions {
     geo_restriction {
@@ -163,4 +165,3 @@ resource "aws_route53_record" "dns_alias_record" {
   }
 }
 
-# NEXT: Capture the S3 bucket name as an output to be used as deployment target in workflow
