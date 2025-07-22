@@ -75,7 +75,7 @@ jobs:
 
     - name: Confirm CloudFront Distribution ID
       run: |
-        echo "CDN ID passed from previous job: ${{ steps.get_cdn_id.outputs.cdn_id }}"
+        echo "CDN ID passed from previous job: ${{ needs.terraform.outputs.cdn_id }}"
     
     - name: Configure AWS credentials for S3 deployment
       uses: aws-actions/configure-aws-credentials@v2
@@ -92,5 +92,5 @@ jobs:
     - name: Invalidate CloudFront Cache
       run: |
         aws cloudfront create-invalidation \
-          --distribution-id ${{ steps.tf_output.outputs.cdn_id }} \
+          --distribution-id ${{ needs.terraform.outputs.cdn_id }} \
           --paths "/*"
