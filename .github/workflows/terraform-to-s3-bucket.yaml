@@ -52,14 +52,14 @@ jobs:
       
       - name: Get CDN Distribution ID
         id: tf_output
+        working-directory: terraform
         run: |
-          export CDN_ID=$(terraform output -json cdn_distribution_id | jq -r '.')
+          CDN_ID=$(terraform output -json | jq -r '.cdn_distribution_id.value')
           if [ -z "$CDN_ID" ]; then
             echo "CDN Distribution ID not found!" >&2
             exit 1
           fi
           echo "cdn_id=$CDN_ID" >> $GITHUB_OUTPUT
-        working-directory: terraform
         
   deploy:
     needs: terraform
