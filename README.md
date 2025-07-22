@@ -24,9 +24,12 @@ The user only needs the following permissions:
 "s3:PutObject",
 "s3:ListBucket",
 "s3:DeleteObject"
-"s3:GetBucketPolicy"
-"route53:ListHostedZones"
-"acm:ListCertificates"
+"s3:GetBucketPolicy",
+"s3:GetBucketAcl,
+"route53:ListHostedZones",
+"route53:GetHostedZone",
+"acm:ListCertificates",
+"acm:DescribeCertificate",
 "cloudfront:GetOriginAccessControl"
 
 These can be added via an inline policy and restricted only to the 2 necessary s3 buckets.
