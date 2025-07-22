@@ -55,7 +55,7 @@ jobs:
         working-directory: terraform
         run: |
           CDN_ID=$(terraform output -raw cdn_distribution_id)
-          echo "cdn_id=$CDN_ID" >> $GITHUB_OUTPUT
+          echo "cdn_id=${CDN_ID}" >> "$GITHUB_OUTPUT"
         
   deploy:
     needs: terraform
