@@ -16,7 +16,21 @@ Docs: https://docs.aws.amazon.com/acm/latest/userguide/setup.html
 
 *Note: Cloudfront requires certs to be issued in in us-east-1 regardless of where consuming resources are located*
 
-5. Within GitHub, create any environment variables + values  that you’d like to keep out of source control, to represent variables held in the *.auto.tfvars file if you were running this locally.
+5. Attach IAM policies that allow access to the S3 Buckets (tfstate and website_assets) to the AWS User used in running the GitHub Actions pipeline.
+
+The user only needs the following permissions on the S3 bucket
+
+"s3:PutObject",
+"s3:ListBucket",
+"s3:DeleteObject"
+
+These can be added via an inline policy and restricted only to the 2 necessary s3 buckets.
+
+6. Set the Secret Access Key ID and Secret for this user in GitHub (Actions) as repository secrets.
+
+7. Within GitHub, create any environment variables + values  that you’d like to keep out of source control, to represent variables held in the *.auto.tfvars file if you were running this locally.
+
+
 
 *For example: You might want to keep your domain name value example.com; or your subdomain myapp.example.com out of source control*
 
