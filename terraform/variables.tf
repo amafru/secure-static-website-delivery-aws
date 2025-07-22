@@ -1,17 +1,19 @@
+# Sensitive values should ideally be spec'd via
+# - secrets.auto.tfvars file for sensitive values like s3 web assets bucket name 
+#       (Create that file + add it to gitignore if deploying the terraform config locally using CLI)
+# - terraform.tfvars for non-sensitive values
+# If spec'ing different region value in terraform.tfvars also update main.tf terraform block
+
 variable "region" {
   type        = string
-  default     = "eu-west-2" # Can be overriden by spec'ing different region value in terraform.tfvars (also update main terraform block)
+  default     = "eu-west-1" # Default (fallback) region.
   description = "The AWS region to deploy to"
 }
 
 variable "web_assets_bucket" {
   type        = string
-  default     = "secure-static-website-assets"
   description = "The name of the website assets S3 bucket"
 }
-
-# The below secrets are read from secrets file *.auto.tfvars file (kept out of source control) 
-# Ensure you should define this file and add relevant values to it
 
 variable "hosted_zone" {
   type        = string
