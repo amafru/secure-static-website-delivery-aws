@@ -54,11 +54,7 @@ jobs:
         id: tf_output
         working-directory: terraform
         run: |
-          CDN_ID=$(terraform output -json | jq -r '.cdn_distribution_id.value')
-          if [ -z "$CDN_ID" ]; then
-            echo "CDN Distribution ID not found!" >&2
-            exit 1
-          fi
+          CDN_ID=$(terraform output -raw cdn_distribution_id)
           echo "cdn_id=$CDN_ID" >> $GITHUB_OUTPUT
         
   deploy:
@@ -71,7 +67,7 @@ jobs:
     steps:
     - name: Confirm CloudFront Distribution ID
       run: |
-        echo "CDN ID passed from previous job: ${{ needs.terraform.outputs.cdn_id }}"
+        echo "CDN ID passed from previous job: ${{ steps.tf_output.outputs.cdn_id }}"
     
     - name: Configure AWS credentials for S3 deployment
       uses: aws-actions/configure-aws-credentials@v2
@@ -88,5 +84,5 @@ jobs:
     - name: Invalidate CloudFront Cache
       run: |
         aws cloudfront create-invalidation \
-          --distribution-id ${{ needs.terraform.outputs.cdn_id }} \
+          --distribution-id ${{ steps.tf_output.outputs.cdn_id }} \
           --paths "/*"
