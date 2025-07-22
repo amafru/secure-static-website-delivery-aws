@@ -17,7 +17,7 @@ jobs:
       TF_VAR_web_assets_bucket: ${{ secrets.TF_VAR_WEB_ASSETS_BUCKET }}
     
     outputs:
-      cdn_id: ${{ steps.tf_output.outputs.cdn_id }}
+      cdn_id: ${{ steps.get_cdn_id.outputs.CDN_ID }}
 
     steps:
       - name: Checkout source
@@ -25,6 +25,8 @@ jobs:
       
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_wrapper: false
       
       - name: Configure AWS credentials for Terraform
         uses: aws-actions/configure-aws-credentials@v2
@@ -51,12 +53,14 @@ jobs:
         working-directory: terraform
       
       - name: Get CDN Distribution ID
-        id: tf_output
+        id: get_cdn_id
         working-directory: terraform
         run: |
-          CDN_ID=$(terraform output -raw cdn_distribution_id 2>/dev/null)
-          echo "Fetched CDN_ID=$CDN_ID"
-          echo "cdn_id=$CDN_ID" >> "$GITHUB_OUTPUT"
+          CLOUDFRONT_DISTRO_ID=$(terraform output -raw cdn_distribution_id)
+          echo "Retrieved value for Cloudfront ID is: ${CLOUDFRONT_DISTRO_ID}"
+          
+          echo "CDN_ID=${CLOUDFRONT_DISTRO_ID}" >> $GITHUB_OUTPUT
+          echo "Stored value for cdn_id is: ${CDN_ID}"
         
   deploy:
     needs: terraform
@@ -64,6 +68,7 @@ jobs:
 
     env:
       WEB_ASSETS_S3_BUCKET_NAME: ${{ vars.WEB_ASSETS_S3_BUCKET_NAME }}
+      CDN_ID: ${{ needs.terraform.outputs.cdn_id }}
     
     steps:
     - name: Confirm CloudFront Distribution ID
