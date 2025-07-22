@@ -1,2 +1,1 @@
-region = ""
-url_prefix = ""
+url_prefix = "simple-website" # Set another value here if you wanting to overwrite the default 'simple-website'

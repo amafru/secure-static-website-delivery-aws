@@ -43,19 +43,6 @@ resource "aws_s3_bucket" "website_assets_bucket" {
   }
 }
 
-# # Configure the s3 bucket for static website hosting
-# resource "aws_s3_bucket_website_configuration" "config_s3_bucket_as_web_host" {
-#   bucket = aws_s3_bucket.website_assets_bucket.id
-
-#   index_document {
-#     suffix = "index.html"
-#   }
-
-#   error_document {
-#     key = "error.html"
-#   }
-# }
-
 # Turn on Block-Public-Access for the bucket and it's resources
 resource "aws_s3_bucket_public_access_block" "block_all" {
   bucket                  = aws_s3_bucket.website_assets_bucket.id
