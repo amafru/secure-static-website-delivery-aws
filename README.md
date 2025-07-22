@@ -18,12 +18,16 @@ Docs: https://docs.aws.amazon.com/acm/latest/userguide/setup.html
 
 5. Attach IAM policies that allow access to the S3 Buckets (tfstate and website_assets) to the AWS User used in running the GitHub Actions pipeline.
 
-The user only needs the following permissions on the S3 bucket
+The user only needs the following permissions:
 
 "s3:GetObject"
 "s3:PutObject",
 "s3:ListBucket",
 "s3:DeleteObject"
+"s3:GetBucketPolicy"
+"route53:ListHostedZones"
+"acm:ListCertificates"
+"cloudfront:GetOriginAccessControl"
 
 These can be added via an inline policy and restricted only to the 2 necessary s3 buckets.
 
