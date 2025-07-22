@@ -113,7 +113,7 @@ resource "aws_cloudfront_distribution" "cdn" {
   comment             = "CDN for secure static website"
   default_root_object = "index.html"
 
-  aliases = ["simple-static-website.${var.domain_name}"]
+  aliases = ["${var.url_prefix}.${var.domain_name}"]
 
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
@@ -133,7 +133,7 @@ resource "aws_cloudfront_distribution" "cdn" {
 
   # Priceclass_200 Includes Edge Locations in North America, Europe, Asia, Middle East, and Africa
   # Use Priceclass_100 if you want less coverage
-  price_class = "PriceClass_200" 
+  price_class = "PriceClass_200"
 
   restrictions {
     geo_restriction {
