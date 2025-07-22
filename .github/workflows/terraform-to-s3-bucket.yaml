@@ -9,6 +9,12 @@ on:
 jobs:
   terraform:
     runs-on: ubuntu-latest
+
+    env:
+      TF_VAR_region: ${{ secrets.TF_VAR_region }}
+      TF_VAR_domain_name: ${{ secrets.TF_VAR_domain_name }}
+      TF_VAR_hosted_zone: ${{ secrets.TF_VAR_hosted_zone }}
+      TF_VAR_web_assets_bucket: ${{ secrets.TF_VAR_WEB_ASSETS_BUCKET }}
     
     outputs:
       cdn_id: ${{ steps.tf_output.outputs.cdn_id }}
