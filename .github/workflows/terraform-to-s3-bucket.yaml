@@ -17,7 +17,7 @@ jobs:
       TF_VAR_web_assets_bucket: ${{ secrets.TF_VAR_WEB_ASSETS_BUCKET }}
     
     outputs:
-      cdn_id: ${{ steps.get_cdn_id.outputs.CDN_ID }}
+      cdn_id: ${{ steps.get_cdn_id.outputs.cdn_id }}
 
     steps:
       - name: Checkout source
@@ -59,8 +59,7 @@ jobs:
           CLOUDFRONT_DISTRO_ID=$(terraform output -raw cdn_distribution_id)
           echo "Retrieved value for Cloudfront ID is: ${CLOUDFRONT_DISTRO_ID}"
           
-          echo "CDN_ID=${CLOUDFRONT_DISTRO_ID}" >> $GITHUB_OUTPUT
-          echo "Stored value for cdn_id is: ${CDN_ID}"
+          echo "cdn_id=${CLOUDFRONT_DISTRO_ID}" >> $GITHUB_OUTPUT
         
   deploy:
     needs: terraform
@@ -71,9 +70,12 @@ jobs:
       CDN_ID: ${{ needs.terraform.outputs.cdn_id }}
     
     steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
     - name: Confirm CloudFront Distribution ID
       run: |
-        echo "CDN ID passed from previous job: ${{ steps.tf_output.outputs.cdn_id }}"
+        echo "CDN ID passed from previous job: ${{ steps.get_cdn_id.outputs.cdn_id }}"
     
     - name: Configure AWS credentials for S3 deployment
       uses: aws-actions/configure-aws-credentials@v2
