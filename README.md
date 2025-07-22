@@ -20,6 +20,7 @@ Docs: https://docs.aws.amazon.com/acm/latest/userguide/setup.html
 
 The user only needs the following permissions on the S3 bucket
 
+"s3:GetObject"
 "s3:PutObject",
 "s3:ListBucket",
 "s3:DeleteObject"
