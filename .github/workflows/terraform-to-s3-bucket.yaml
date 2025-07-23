@@ -57,8 +57,6 @@ jobs:
         working-directory: terraform
         run: |
           CLOUDFRONT_DISTRO_ID=$(terraform output -raw cdn_distribution_id)
-          echo "Retrieved value for Cloudfront ID is: ${CLOUDFRONT_DISTRO_ID}"
-          
           echo "cdn_id=${CLOUDFRONT_DISTRO_ID}" >> $GITHUB_OUTPUT
         
   deploy:
@@ -72,10 +70,6 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
-
-    - name: Confirm CloudFront Distribution ID
-      run: |
-        echo "CDN ID passed from previous job: ${{ needs.terraform.outputs.cdn_id }}"
     
     - name: Configure AWS credentials for S3 deployment
       uses: aws-actions/configure-aws-credentials@v2
